@@ -88,3 +88,11 @@ contract Example {
   }
 }
 ```
+
+**String**:
+```js
+bytes msg1 = "Hello World"; 
+string msg2 = "Hello World";
+```
+For a long human-readable message it is recommended to use string since it will be easier to read the values from the blockchain storage from the outside (like for a front-end application)
+If the string is shorter than 32 bytes, it is more efficient to store it in a fixed-size byte array like bytes32. This simplifies the computation since the memory is allocated ahead of time. On the other hand, both string and bytes will allocate their memory dynamically depending on the size of the string.

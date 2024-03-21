@@ -46,6 +46,9 @@ contract Agreement {
 
 https://ethereum.org/en/developers/docs/evm/opcodes/
 
+A quantidade de gas gasto em uma operação é calculada de forma determinística. Então se uma mesma operação for realizada N vezes, a quantidade de gas gasta por cada uma dessas N operações será a mesma. Além disso, isso nos permite calcular a quantidade de gas que será gasto antes de realizar tal operação. 
+O que varia é o preço que pagamos pela unidade de gás. Quando a rede está recebendo um volume maior de transações, o preço do gás tende a aumentar. Como uma quantidade finita de transações podem ser geradas em um bloco e cada bloco é gerado em um determinado espaço de tempo, temos uma quantidade finita de gás que pode ser gasto nesse intervalo de tempo, ai que entra a lei da oferta e da procura. 
+
 ---
 
 ## Key Takeaways
@@ -70,3 +73,5 @@ https://ethereum.org/en/developers/docs/evm/opcodes/
 3. ⛽️ Transactions set a gas limit
 4. 🎯 Transactions send calldata, targetting a contract method
 5. 🌐 Similarly smart contracts can call each other within the one transaction
+
+gas price: quanto eu quero pagar por unidade de gas e gas limit: meu limite de unidades de gas posso usar para essa tx
