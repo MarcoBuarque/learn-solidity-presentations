@@ -67,6 +67,8 @@ contract X {
   }
 }
 ```
+receive: um método especial tipo o constructor. Ele é invocado quando algum valor em ether é enviado para o smartcontract, mas na message call não foi especificado nenhum método ou o método especificado não existe (tipo um default)
+pay: o valor em eth que vc está enviando para o contrato será adicionado automaticamente no saldo do contrato
 
 ---
 
@@ -84,6 +86,16 @@ contract X {
   }
 }
 ```
+```js
+contract MyContract {
+
+  function callOtherContract(address targetContract, bytes memory data) public payable {
+    (bool success, bytes memory returnData) = targetContract.call{gas: 200000, gasPrice: 100 gwei, value: 1 ether}(data);
+    // Handle success and returnData
+  }
+}
+```
+
 
 ---
 
@@ -102,3 +114,7 @@ contract X {
   }
 }
 ```
+
+o que é message call ?é o ato de passar uma mensagem de um ator (eoa ou smart contract) para outro ator (eoa ou smart contract). Sendo que uma mensagem é um conjunto de dados (data) e valores (ether)que é passado entre duas accounts.
+Vale ressaltar que eoa e smart contract são visto como accounts (user account e contract account)
+An address on the EVM is a 160 bits long, or a 40 character, hexadecimal string

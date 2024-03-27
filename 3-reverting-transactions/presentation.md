@@ -61,6 +61,8 @@ contract X {
 
 👆⛽️ _Gas Efficient_!
 
+Both revert and require use the REVERT opcode, they just provide different syntaxes to do so. The recommended approach is to use custom errors in most cases as they provide a gas-efficient way to identify and debug issues.
+
 ---
 
 ## Assert
