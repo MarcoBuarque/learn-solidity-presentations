@@ -10,7 +10,18 @@ contract A {
     constructor(address _b) {
         b = _b;
 
-        sum = iB(b).add(15, 10, 25);
+      
+        (bool success, bytes memory returnData) = _b.call(hex"771602f70000000000000000000000000000000000000000000000000000000000000009000000000000000000000000000000000000000000000000000000000000000a");
+        
+        console.log(success);
+        require(success);
+
+        // passando 9  0000000000000000000000000000000000000000000000000000000000000009 e 10 
+        sum = abi.decode(returnData, (uint)); 
+        console.log(sum);
+
+        // sum = iB(b).add(15, 10, 25);
+        // console.log(sum);
     }
 }
 
@@ -20,6 +31,7 @@ interface iB {
 
 contract B {
     fallback() external {
+        console.logBytes4(msg.sig);
         console.logBytes(msg.data);
     }
 

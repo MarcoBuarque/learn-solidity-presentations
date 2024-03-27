@@ -18,7 +18,35 @@ First off, the high level syntax for message calls targetting functions:
 ```js
 contract A {
   uint sum;
-  function storeSum(address b) external {
+  function storeSum(address b) excontract Contract {
+	uint configA;
+	uint configB;
+	uint configC;
+	address owner;
+
+	constructor() {
+		owner = msg.sender;
+	}
+
+	function setA(uint _configA) public onlyOwner {
+		configA = _configA;
+	}
+
+	function setB(uint _configB) public onlyOwner {
+		configB = _configB;
+	}
+
+	function setC(uint _configC) public onlyOwner {
+		configC = _configC;
+	}
+
+	modifier onlyOwner {
+		require(msg.sender == owner, "invalid address");
+
+		_;
+	}
+}
+ternal {
     sum = B(b).add(5, 10);
   }
 }
