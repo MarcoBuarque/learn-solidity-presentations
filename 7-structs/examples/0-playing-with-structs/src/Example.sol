@@ -23,6 +23,7 @@ contract Example {
     }
 
     event OrderCreated(uint256 indexed key, uint256 amount);
+    // OrderCreated.where(key: 0) com o indexed podemos filtrar e achar um evento específico, mas isso fará com que o evento gaste mais gás
 
     function createOrder(address buyer, address seller, uint256 amount) external {
         Order memory order = Order(buyer, seller, amount, OrderStatus.Created);
@@ -30,13 +31,22 @@ contract Example {
         emit OrderCreated(orders.length - 1, amount);
     }
 
-    function payment(uint256 key) external payable {
-        Order storage order = orders[key];
-        require(order.buyer == msg.sender);
-        require(order.amount == msg.value);
-        // created -> paid -> ?
-        require(order.status == OrderStatus.Created);
+    // function payment(uint256 key) external payable {
+    //     Order storage order = orders[key];
+    //     require(order.buyer == msg.sender);
+    //     require(order.amount == msg.value);
+    //     // created -> paid -> ?
+    //     require(order.status == OrderStatus.Created);
 
-        order.status = OrderStatus.Paid;
+    //     order.status = OrderStatus.Paid;
+    // }
+
+    function payment(uint256 key) external payable {
+        require(orders[key].buyer == msg.sender);
+        require(orders[key].amount == msg.value);
+        // created -> paid -> ?
+        require(orders[key].status == OrderStatus.Created);
+
+        orders[key].status = OrderStatus.Paid;
     }
 }
