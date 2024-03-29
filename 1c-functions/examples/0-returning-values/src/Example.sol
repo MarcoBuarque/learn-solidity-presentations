@@ -18,16 +18,16 @@ contract Example {
         // console.log(lerTexto());
     }
 
-    function math(uint256 x, uint256 y) private returns (uint256, uint256) {
+    function math(uint256 x, uint256 y) private pure returns (uint256, uint256) {
         return (x + y, x * y);
     }
 
     
-    function lerTexto()  public view returns(string memory) { // apenas no caso de string precisamos colocar explicitament que é do tipo memory, para int/uint/bool não precisa 
+    function lerTexto()  public view returns(string memory) { // apenas no caso de string precisamos colocar explicitamente que é do tipo memory, para int/uint/bool não precisa 
         return text;
     }
 
-    function guardarTexto(string memory _text) public pure returns(string memory){
+    function guardarTexto(string memory _text) public returns(string memory){
         text = _text;
         _text = "dummy text";
         return _text;
